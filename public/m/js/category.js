@@ -39,7 +39,7 @@ Letao.prototype = {
 	},
 	getCategoryRight: function () {
 		$('.left ul').on('click', 'a', function (e) {
-			getData(1);
+			
 			//console.log(e.target);
 
 			$(e.target.parentNode).addClass('active').siblings().removeClass('active');
@@ -47,7 +47,7 @@ Letao.prototype = {
 			// var id = current.data('id');
 
 			var id = $(this).attr('data-id');
-			getData(id);
+			getData();
 			// 封装函数
 
 			function getData() {
