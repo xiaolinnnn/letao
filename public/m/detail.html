@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>分类页面</title>
+    <link rel="icon" href="images/favicon.ico">
+    <!-- 引入mui -->
+    <link rel="stylesheet" href="./lib/mui/css/mui.css">
+    <!-- 引入字体图标 -->
+    <link rel="stylesheet" href="./lib/fontAwesome/css/font-awesome.css">
+    <!-- 引入less -->
+    <link rel="stylesheet/less" href="./less/detail.less">
+    <script src="./lib/less/less.js"></script>
+</head>
+
+<body>
+    <!-- 顶部 -->
+    <header id="header">
+        <a href="./productlist.html" class="fa fa-arrow-left"></a>
+        <h4>商品详情</h4>
+        <a href="#" class="fa fa-home" aria-hidden="true"></a>
+    </header>
+    <main id="main">
+        <!-- 轮播图部分 -->
+        <section id="slide">
+            <!-- 轮播图主体部分 -->
+            <div class="mui-slider">
+                <div class="mui-slider-group mui-slider-loop">
+
+                </div>
+                <!-- 小圆点部分 -->
+                <div class="mui-slider-indicator">
+                    <div class="mui-indicator mui-active"></div>
+                    <div class="mui-indicator"></div>
+                    <div class="mui-indicator"></div>
+                    <div class="mui-indicator"></div>
+                </div>
+            </div>
+        </section>
+        <section id="product">
+            <div class="product-name">
+                名称：
+                <span>李宁闪击篮球鞋驭帅10镭射队尚4男韦德之道空袭中高帮队尚3.5球鞋</span>
+            </div>
+            <div class="product-price">
+                价格：
+                <span class="new-price">¥560.00</span>
+                <del class="old-price">¥888.00</del>
+            </div>
+            <div class="product-size">
+                尺码：
+                <span class="btn-size active">35</span>
+                <span class="btn-size">36</span>
+                <span class="btn-size">37</span>
+                <span class="btn-size">38</span>
+                <span class="btn-size">39</span>
+                <span class="btn-size">40</span>
+                <span class="btn-size">41</span>
+                <span class="btn-size">36</span>
+                <span class="btn-size">37</span>
+                <span class="btn-size">38</span>
+                <span class="btn-size">39</span>
+                <span class="btn-size">40</span>
+                <span class="btn-size">41</span>
+                <span class="btn-size">36</span>
+                <span class="btn-size">37</span>
+                <span class="btn-size">38</span>
+                <span class="btn-size">39</span>
+                <span class="btn-size">40</span>
+                <span class="btn-size">41</span>
+            </div>
+            <div class="product-num">
+                数量：
+                <span class="mui-numbox" data-numbox-step='1' data-numbox-min='0' data-numbox-max='20'>
+                    <button class="mui-btn mui-numbox-btn-minus" type="button">-</button>
+                    <input class="mui-numbox-input" type="number" />
+                    <button class="mui-btn mui-numbox-btn-plus" type="button">+</button>
+                </span>
+                剩余：
+                <span>20</span>件
+            </div>
+        </section>
+    </main>
+
+
+    <!-- 底部 -->
+    <footer id="footer">
+        <a href="#" class="btn_cart fa fa-shopping-cart"></a>
+        <div class="btn-options">
+            <div class="add-cart">
+                <a href="#" class="mui-btn mui-btn-danger btn-add-cart">加入购物车</a>
+            </div>
+            <div class="buy">
+                <a href="#" class="mui-btn mui-btn-warning btn-buy">立即购买</a>
+            </div>
+        </div>
+    </footer>
+    <!-- 主体部分的模板 -->
+    <script id="productDetailTmp" type="text/html">
+        <div class="product-name">
+            名称：
+            <span>{{proName}}</span>
+        </div>
+        <div class="product-price">
+            价格：
+            <span class="new-price">{{price}}</span>
+            <del class="old-price">{{oldPrice}}</del>
+        </div>
+        <div class="product-size">
+            尺码： {{each size as value i}}
+            <span class="btn-size" data-size="{{value}}">{{value}}</span>
+            {{/each}}
+        </div>
+        <div class="product-num">
+            数量：
+            <span class="mui-numbox" data-numbox-step='1' data-numbox-min='0' data-numbox-max='{{num}}'>
+                <button class="mui-btn mui-numbox-btn-minus" type="button">-</button>
+                <input class="mui-numbox-input" type="number" />
+                <button class="mui-btn mui-numbox-btn-plus" type="button">+</button>
+            </span>
+            剩余：
+            <span>{{num}}</span>件
+        </div>
+    </script>
+    <!-- 2. 轮播图的模板 -->
+    <script id="productSlideTmp" type="text/html">
+        <!-- 轮播图的图片容器 -->
+        <div class="mui-slider-group mui-slider-loop">
+            {{each pic as value i}}
+            <!-- 判断如果i==0表示当前是第一张 第一张的前面放最后一张图  把最后一张图放到前面pic[pic.length-1]表示最后一张 -->
+            {{if i == 0}}
+            <div class="mui-slider-item mui-slider-item-duplicate">
+                <a href="#">
+                    <img src="{{pic[pic.length-1].picAddr}}" />
+                </a>
+            </div>
+            {{/if}}
+            <div class="mui-slider-item">
+                <a href="#">
+                    <img src="{{value.picAddr}}" />
+                </a>
+            </div>
+            <!-- 判断如果i==pic.lenght-1表示当前是最后一张 最后一张要在后面添加第一张 pic[0]表示第一张 -->
+            {{if i == pic.length-1}}
+            <div class="mui-slider-item mui-slider-item-duplicate">
+                <a href="#">
+                    <img src="{{pic[0].picAddr}}" />
+                </a>
+            </div>
+            {{/if}} {{/each}}
+        </div>
+        <!-- 轮播图小圆点容器 -->
+        <div class="mui-slider-indicator">
+            {{each pic as value i}}
+            <!-- mui-active当前正在显示的小圆点 -->
+            <div class="mui-indicator {{i == 0 ? 'mui-active' : ''}}"></div>
+            {{/each}}
+        </div>
+    </script>
+
+    <!-- 引入mui的js -->
+    <script src="./lib/mui/js/mui.min.js"></script>
+    <!-- 引入zepto -->
+    <script src="./lib/zepto/zepto.min.js"></script>
+    <!-- 引入模板引擎 -->
+    <script src="./lib/artTemplate/template.js"></script>
+    <!-- 自己的js -->
+    <script src="./js/detail.js"></script>
+</body>
+
+</html>
