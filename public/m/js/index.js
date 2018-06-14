@@ -2,6 +2,7 @@ $(function () {
   var letao = new Letao();
   letao.initSlide();
   letao.initScroll();
+ 
 })
 var Letao = function () {
  
@@ -26,5 +27,6 @@ Letao.prototype = {
       bounce: true //是否启用回弹
     }
     mui('.mui-scroll-wrapper').scroll(options);
-  }
+  },
+ 
 }

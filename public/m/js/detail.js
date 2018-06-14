@@ -1,10 +1,11 @@
 var letao;
+var productid;
 $(function () {
     letao = new Letao();
     letao.selectSize();
     letao.addCart();
     //1. 获取url 传递的productid的值
-    var productid = getQueryString('productid');
+    productid = getQueryString('productid');
     //2. 调用获取数据函数传入当前的productid
     letao.getProductDetail(productid);
 });
@@ -38,7 +39,7 @@ Letao.prototype = {
                 id: id
             },
             success: function (data) {
-                console.log(data);
+                //console.log(data);
                 var start = data.size.split('-')[0] * 1;
                 var end = data.size.split('-')[1] * 1;
                 //会变成40 50
@@ -82,13 +83,31 @@ Letao.prototype = {
                 });
                 return;
             }
-            mui.confirm('是否进入购物车', '添加成功', ['是', '否'], function (e) {
-                if (e.index == 0) {
-                    console.log('正在进入购物车');
+            $.ajax({
+                url: '/cart/addCart',
+                type: 'post',
+                data: {
+                    'productId': productid,
+                    'num': num,
+                    'size': size
+                },
+                success: function (data) {
+                    console.log(data);
+                    if (data.success) {
+                        mui.confirm('是否进入购物车', '添加成功', ['是', '否'], function (e) {
+                            if (e.index == 0) {
+                                window.location.href = 'car.html';
+                            } else if (e.index == 1) {
+                                console.log('请继续选择尺码数量');
+                            }
+                        })
+                    } else {
+                        //添加失败表示未登录
+                        window.location.href = 'login.html';
+                    }
                 }
-
-
             })
+
 
         })
     }

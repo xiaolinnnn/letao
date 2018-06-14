@@ -71,8 +71,7 @@ Letao.prototype = {
                                     // 当前数据请求渲染完毕后结束上拉加载
                                     mui('.mui-scroll-wrapper').pullRefresh().endPullupToRefresh();
                                 } else {
-                                    //length小于等于表示数据已经加载完毕
-                                    //结束上拉加载并且提示没有更多数据了
+                                    
                                     mui('.mui-scroll-wrapper').pullRefresh().endPullupToRefresh(true);
                                 }
                             });
@@ -84,10 +83,7 @@ Letao.prototype = {
     },
     // 搜索商品列表
     searchProductList: function () {
-        // 1. 给搜索按钮添加点击事件  tap是移动端的点击事件 
-        // 使用touchstart事件模拟的 解决click延迟问题 移动端推荐使用tap事件
-        // 在PC端有一些版本浏览器tap在模拟器会触发2次 真机不会
-        //mui在下拉刷新和上拉加载里面阻止了click事件 推荐使用tap
+       
         $('.btn-search').on('tap', function () {
             // 2. 获取当前输入的搜索的内容
             search = $('.input-search').val()
