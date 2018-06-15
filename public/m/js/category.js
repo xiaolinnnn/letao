@@ -41,7 +41,7 @@ Letao.prototype = {
 		$('.left ul').on('click', 'a', function (e) {
 			
 			//console.log(e.target);
-
+		
 			$(e.target.parentNode).addClass('active').siblings().removeClass('active');
 			// var current = $(e.target);
 			// var id = current.data('id');

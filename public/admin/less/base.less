@@ -1,0 +1,87 @@
+@mainColor: #2f4050;
+html,
+body {
+  height: 100%;
+}
+#main {
+  height: 100%;
+  .row {
+    height: 100%;
+    > div {
+      height: 100%;
+      
+      .left {
+        width: 100%;
+        height: 100%;
+        background-color: @mainColor;
+        .logo {
+          padding: 40px 60px;
+          position: relative;
+          height: 200px;
+          background-color: #243443;
+          img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+          }
+          p {
+            color: #a9b0c2;
+            margin-top: 10px;
+            margin-left: 30px;
+          }
+        }
+        .memu {
+            padding: 20px;
+          .list-group {
+            .list-group-item {
+              background-color: @mainColor;
+              border-color: @mainColor;
+              padding: 0px;
+              a {
+                color: #a9b0c2;
+                display: block;
+                padding-left: 20px;
+                text-decoration: none;
+                height: 40px;
+                line-height: 40px;
+                font-size: 16px;
+                &:hover {
+                    background-color: #243443;
+                }
+              }
+            }
+          }
+        }
+      }
+      .right{
+        background-color: #eee;
+        height: 100%;
+        margin-left: -30px;
+          .header{
+             padding: 15px 20px;
+              height: 45px;
+              background-color: #fff;
+              .list{
+                  font-size: 20px;
+                  text-decoration: none;
+                  .fa-navicon {
+                      color: #fff;
+                      background-color: #5cb85c;
+                      width: 25px;
+                      height: 25px;
+                      text-align: center;
+                      line-height: 25px;
+                      #content {
+                        padding: 40px 10px;
+                        height: 100%;
+                      }
+                  }
+              }
+          }
+        }
+    }
+  }
+  .pagination{
+    margin: 0;
+  }
+}

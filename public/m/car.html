@@ -16,7 +16,8 @@
     <link rel="stylesheet/less" href="less/car.less">
     <!-- 4. 引入less.js编译器文件 -->
     <script src="lib/less/less.js"></script>
-    <!-- 加载rem的js文件 -->
+   <!-- 加载rem的js文件 -->
+   <script src="js/rem.js"></script>
 
 </head>
 
@@ -121,7 +122,8 @@
         {{each rows as value i}}
         <li class="mui-table-view-cell mui-media mui-transitioning">
             <!-- 把当前商品的数量 和 总数量 当前尺码 总尺码 通过属性绑定到div上 编辑的时候获取当前编辑父元素div上的属性的值 -->
-            <div class="mui-slider-right mui-disabled"data-id="{{value.id}}">
+            <div class="mui-slider-right mui-disabled" data-id="{{value.id}}" data-num="{{value.num}}" data-product-num="{{value.productNum}}"
+                data-size="{{value.size}}" data-product-size="{{value.productSize}}">
                 <a class="mui-btn mui-btn-primary btn-edit">编辑</a>
                 <a class="mui-btn mui-btn-danger btn-delete">删除</a>
             </div>
@@ -139,18 +141,20 @@
                         </p>
                         <div class="product-price">
                             <span class="new-price">
-                               ¥{{value.price}}
-                                 </span>
+                                ¥{{value.price}}
+                            </span>
                             <del class="old-price">
                                 ¥{{value.oldPrice}}
                             </del>
                         </div>
                         <div class="product-params">
                             <div class="product-size mui-pull-left">
-                                鞋码： <span>{{value.size}}</span>
+                                鞋码：
+                                <span>{{value.size}}</span>
                             </div>
                             <div class="product-num mui-pull-right">
-                                <span>x<span>{{value.num}}</span>双</span>
+                                <span>x
+                                    <span>{{value.num}}</span>双</span>
                             </div>
                         </div>
                     </div>
@@ -158,6 +162,21 @@
             </div>
         </li>
         {{/each}}
+    </script>
+    <script id="editTmp" type="text/html">
+        <div class="product-size">
+            尺码： {{each productSize as value i}}
+            <span class="btn-size {{value==size?'active':''}}" data-size="{{value}}">{{value}}</span> {{/each}}
+        </div>
+        <div class="product-num">
+            数量：
+            <span class="mui-numbox" data-numbox-step='1' data-numbox-min='1' data-numbox-max='{{productNum}}'>
+                <button class="mui-btn mui-numbox-btn-minus" type="button">-</button>
+                <input class="mui-numbox-input" type="number" />
+                <button class="mui-btn mui-numbox-btn-plus" type="button">+</button>
+            </span> 剩余：
+            <span>{{productNum}}</span>件
+        </div>
     </script>
     <!-- 5. 引入mui的js文件 -->
     <script src="lib/mui/js/mui.js"></script>
